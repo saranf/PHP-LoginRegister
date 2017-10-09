@@ -1,9 +1,13 @@
 <?php
 	// json으로 된 한국어를 깨지지 않도록 보호함
 	header('Content-Type: application/json');
+
 	//header("Cache-Control: no-cache, must-revalidate");
+
+	//한국어를 깨지지 않도록 보호함
 	//header("Content-type: text/html; charset=UTF-8");
 
+//-----------------mysql 연결--------------------------------//
 $conn = mysqli_connect(/*host,id,pw,name*/);
 // mysqli_connect(host,id,pw,name)
 
@@ -14,20 +18,31 @@ if (mysqli_connect_errno())
 	echo "MySQL 연결 실패 : " . mysqli_connect_error();
 }
 
-//$email    = $_POST['email'];
-//$password = $_POST['password'];
+//-----------------------------------------------------------//
 
-// 이메일 & 패스워드
+
+//------------------------ 이메일 & 패스워드-----------------//
+
 $email    = "asdf@naver.com";
 $password = "123456789";
 
-// Query구문
+//$email = $_POST['email'];
+//$email = 4_POST['password'];
+
+//-----------------------------------------------------------//
+
+//------------------------ Query구문-------------------------//
+
+
 $result = mysqli_query($conn,"SELECT * FROM EasterEgg_Users WHERE User_Email = '$email' and User_Password = '$password'");
 
 $count = $result->num_rows;;
 $data  = $result->fetch_row;
 
-// data base에 아이디가 있다면
+//---------------------------------------------------------//
+
+//------------------data base에 아이디가 있다면-----------//
+
 if($count==1)
 {
 	$row = mysqli_fetch_assoc($result);
@@ -74,4 +89,5 @@ else if(($email!="" || $password!="") && $data[0]!=1)
 	mysqli_close($conn);
 	exit;
 }
+//-----------------------------------------------------------------------------------------------------------------------------//
 ?>

@@ -4,8 +4,12 @@
 
 	//header("Cache-Control: no-cache, must-revalidate");
 
-	//한국어를 깨지지 않도록 보호함
+	//php header로 한국어를 깨지지 않도록 보호함
 	//header("Content-type: text/html; charset=UTF-8");
+
+	//mysql로 한국어를 깨지지 않도록 보호함 
+	//단 mysql이 연결되어 있는 상태에서 이 방법을 쓰도록 한다
+	//mysqli_set_charset($conn,"utf-8");
 
 //-----------------mysql 연결--------------------------------//
 $conn = mysqli_connect(/*host,id,pw,name*/);
@@ -27,7 +31,7 @@ $email    = "asdf@naver.com";
 $password = "123456789";
 
 //$email = $_POST['email'];
-//$email = 4_POST['password'];
+//$email = $_POST['password'];
 
 //-----------------------------------------------------------//
 
